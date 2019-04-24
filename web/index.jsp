@@ -55,6 +55,7 @@
 
                     <table class="bordered highlight">
                         <tr>
+                            <th>Rut</th>
                             <th>Nombre</th>
                             <th>Apellido</th>
                         </tr>
