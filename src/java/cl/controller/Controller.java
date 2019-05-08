@@ -37,6 +37,9 @@ public class Controller extends HttpServlet {
             case "actualizar":
                 this.actualizar(request, response);
                 break;
+            case "buscar":
+                this.buscar(request, response);
+                break;
 //            default:
 //                throw new AssertionError();
         }
@@ -80,6 +83,24 @@ public class Controller extends HttpServlet {
         servicio.eliminar(rut);
         
         response.sendRedirect("index.jsp");
+        
+    }
+    
+    protected void buscar(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+        String rut = request.getParameter("rut");
+                
+        Cliente cli = servicio.buscar(rut);
+        
+        if (cli == null) {
+            request.setAttribute("msg", "<div class='chip'>Rut no encontrado<i class='close material-icons'>close</i></div>");
+        }
+        else{
+            request.setAttribute("msg", "<div class='chip'>Cliente: " + cli.getNombre()+" "+cli.getApellido()+"<i class='close material-icons'>close</i></div>");
+        }
+        
+        request.getRequestDispatcher("buscar.jsp").forward(request, response);
         
     }
     
