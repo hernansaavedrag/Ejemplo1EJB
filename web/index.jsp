@@ -27,10 +27,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
 
-    <body>
+    <body class="amber lighten-1">
+        <c:import url="menu.jsp"/>
         <div class="row">
             <div class="col s6 offset-s3">
-                <div class="card-panel">
+                <div class="card-panel z-depth-5">
                     <h3 class="center-align">Registro Clientes</h3>
                     <form action="control.do" method="post">
 
@@ -47,7 +48,7 @@
                             <input id="apellido" type="text" name="apellido">
                             <label for="apellido">Apellido</label>
                         </div>
-                        <button type="submit" class="btn right">
+                        <button name="boton" value="guardar" type="submit" class="btn right">
                             Guardar
                         </button>
                         <br><br>
@@ -65,12 +66,12 @@
                                 <td>${cli.nombre}</td>
                                 <td>${cli.apellido}</td>
                                 <td>
-                                    <a href="" class="btn-floating blue">
+                                    <a href="actualizar.jsp?rut=${cli.rut}&nombre=${cli.nombre}&apellido=${cli.apellido}" class="btn-floating blue">
                                         <i class="material-icons">mode_edit</i>
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="" class="btn-floating red">
+                                    <a href="eliminar.jsp?rut=${cli.rut}&nombre=${cli.nombre}&apellido=${cli.apellido}" class="btn-floating red">
                                         <i class="material-icons">delete</i>
                                     </a>
                                 </td>

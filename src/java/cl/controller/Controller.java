@@ -25,6 +25,28 @@ public class Controller extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        String btn = request.getParameter("boton");
+        
+        switch (btn) {
+            case "guardar":
+                this.guardar(request, response);
+                break;
+            case "eliminar":
+                this.eliminar(request, response);
+                break;
+            case "actualizar":
+                this.actualizar(request, response);
+                break;
+//            default:
+//                throw new AssertionError();
+        }
+        
+        
+    }
+    
+    protected void guardar(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
         String rut = request.getParameter("rut");
         String nombre = request.getParameter("nombre");
         String apellido = request.getParameter("apellido");
@@ -35,6 +57,33 @@ public class Controller extends HttpServlet {
         response.sendRedirect("index.jsp");
         
     }
+    
+    protected void actualizar(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+        String rut = request.getParameter("rut");
+        String nombre = request.getParameter("nombre");
+        String apellido = request.getParameter("apellido");
+        
+        Cliente cli = new Cliente(rut,nombre,apellido);
+        servicio.actualizar(rut, nombre, apellido);
+        
+        response.sendRedirect("index.jsp");
+        
+    }
+    
+    protected void eliminar(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+        String rut = request.getParameter("rut");
+                
+        servicio.eliminar(rut);
+        
+        response.sendRedirect("index.jsp");
+        
+    }
+    
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
